@@ -53,9 +53,9 @@ button {
   margin-bottom: 2.5rem;
   padding: 0;
   border: none;
-  border-radius: none;
+  border-radius: 0;
   outline: none;
-  background-color: none;
+  background-color: transparent;
 }
 
 textarea {
