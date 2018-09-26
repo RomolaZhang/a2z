@@ -43,7 +43,8 @@ body {
 }
 
 button {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Lato";
+  letter-spacing: 0.8px;
   font-weight: 700;
   color: #3696c7;
   text-align: right;
