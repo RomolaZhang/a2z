@@ -78,7 +78,6 @@ function setup() {
 
   button = select("#button");
   button.mousePressed(transAll);
-
   content = select("#content");
   container = select("#container");
   arr = poem.split("*");
@@ -89,39 +88,34 @@ function setup() {
   }
 }
 
-function transAll(lans) {
+function transAll() {
+  tranlans.push("en");
   for (let i = 0; i < lines.length; i++) {
-    trans(arr[i], lines[i]);
+    trans(arr[i], lines[i], tranlans);
   }
 }
 
-function trans(line, element, source, target) {
-  fetch(
-    "https://translation.googleapis.com/language/translate/v2/?q=" +
-      line +
-      "&source=" +
-      source +
-      "&target=" +
-      target +
-      "&key=" +
-      apiKey
-  )
-    .then(response => response.json())
-    .then(data => {
-      const middle = data.data.translations[0].translatedText;
-      fetch(
-        "https://translation.googleapis.com/language/translate/v2/?q=" +
-          middle +
-          "&source=zh&target=en&key=" +
-          apiKey
-      )
-        .then(response => response.json())
-        .then(data => {
-          element.elt.innerHTML = data.data.translations[0].translatedText;
-        })
-        .catch(error => console.error(error));
-    })
-    .catch(error => console.error(error));
+function trans(line, element, list) {
+  let ele = line;
+  for (let i = 0; i < list.length - 1; i++) {
+    fetch(
+      "https://translation.googleapis.com/language/translate/v2/?q=" +
+        ele +
+        "&source=" +
+        list[i] +
+        "&target=" +
+        list[i + 1] +
+        "&key=" +
+        apiKey
+    )
+      .then(response => response.json())
+      .then(data => {
+        const result = data.data.translations[0].translatedText;
+        ele = result;
+      })
+      .catch(error => console.error(error));
+  }
+  element.elt.innerHTML = ele;
 }
 
 function search(ele) {
@@ -134,8 +128,7 @@ function search(ele) {
       newlan.style("color", colors[int(random(0, 5))]);
       newlan.parent(container);
       tranlans.push(lans[index]);
-    } else {
-      ele.value = "";
     }
+    ele.value = "";
   }
 }
