@@ -91,36 +91,37 @@ function setup() {
 function transAll() {
   tranlans.push("en");
   for (let i = 0; i < lines.length; i++) {
-    trans(arr[i], lines[i], tranlans);
+    trans(arr[i], 0).then(function(result) {
+      lines[i].elt.innerHTML = result;
+    });
   }
 }
 
-function trans(line, element, list) {
-  let ele = line;
-  for (let i = 0; i < list.length - 1; i++) {
-    fetch(
-      "https://translation.googleapis.com/language/translate/v2/?q=" +
-        ele +
-        "&source=" +
-        list[i] +
-        "&target=" +
-        list[i + 1] +
-        "&key=" +
-        apiKey
-    )
-      .then(response => response.json())
-      .then(data => {
-        const result = data.data.translations[0].translatedText;
-        ele = result;
-      })
-      .catch(error => console.error(error));
-  }
-  element.elt.innerHTML = ele;
+function trans(line, i) {
+  return fetch(
+    "https://translation.googleapis.com/language/translate/v2/?q=" +
+      line +
+      "&source=" +
+      tranlans[i] +
+      "&target=" +
+      tranlans[i + 1] +
+      "&key=" +
+      apiKey
+  )
+    .then(response => response.json())
+    .then(data => {
+      const result = data.data.translations[0].translatedText;
+      if (i == tranlans.length - 2) {
+        return result;
+      } else {
+        return trans(result, i + 1);
+      }
+    })
+    .catch(error => console.error(error));
 }
 
 function search(ele) {
   if (event.key === "Enter") {
-    console.log("here");
     const index = languages.indexOf(ele.value.toLowerCase());
     if (index != -1) {
       let newlan = createElement("div", languages[index].toUpperCase());
