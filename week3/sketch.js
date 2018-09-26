@@ -76,9 +76,7 @@ function setup() {
     "no"
   ];
 
-  button = createA("#", "click me");
-  button.style("padding", "12px");
-  button.style("border-style", "solid");
+  button = select("#button");
   button.mousePressed(transAll);
 
   content = select("#content");
@@ -91,17 +89,21 @@ function setup() {
   }
 }
 
-function transAll() {
+function transAll(lans) {
   for (let i = 0; i < lines.length; i++) {
     trans(arr[i], lines[i]);
   }
 }
 
-function trans(line, element) {
+function trans(line, element, source, target) {
   fetch(
     "https://translation.googleapis.com/language/translate/v2/?q=" +
       line +
-      "&source=en&target=zh&key=" +
+      "&source=" +
+      source +
+      "&target=" +
+      target +
+      "&key=" +
       apiKey
   )
     .then(response => response.json())
