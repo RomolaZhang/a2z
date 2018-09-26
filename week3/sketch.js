@@ -1,4 +1,7 @@
-const apiKey = "AIzaSyCGjsbbjtxUAMcgyehRvWZ7ndCj_1tVqw0";
+const apiKey = [
+  "AIzaSyCGjsbbjtxUAMcgyehRvWZ7ndCj_1tVqw0",
+  "AIzaSyDWqd65ZLxy0S1_51T4HHBgbN_-zEREZRQ"
+];
 const poem =
   "Do not go gentle into that good night, *\
 Old age should burn and rave at close of day;  *\
@@ -27,13 +30,11 @@ let content;
 let container;
 let languages = [];
 let lans = [];
-let colors = [];
 let tranlans = [];
 
 function setup() {
   noCanvas();
   tranlans.push("en");
-  colors = ["#ffcdcd", "#23a393", "#f1c550", "#ea4c4c", "#774898"];
   languages = [
     "arabic",
     "bulgarian",
@@ -79,7 +80,7 @@ function setup() {
   button = select("#button");
   button.mousePressed(transAll);
   content = select("#content");
-  container = select("#container");
+  container = select("#lans");
   arr = poem.split("*");
   for (let i = 0; i < arr.length; i++) {
     const line = createP(arr[i]);
@@ -90,6 +91,7 @@ function setup() {
 
 function transAll() {
   tranlans.push("en");
+  console.log(tranlans);
   for (let i = 0; i < lines.length; i++) {
     trans(arr[i], 0).then(function(result) {
       lines[i].elt.innerHTML = result;
@@ -106,7 +108,7 @@ function trans(line, i) {
       "&target=" +
       tranlans[i + 1] +
       "&key=" +
-      apiKey
+      apiKey[int(random(0, 1.9))]
   )
     .then(response => response.json())
     .then(data => {
@@ -124,11 +126,18 @@ function search(ele) {
   if (event.key === "Enter") {
     const index = languages.indexOf(ele.value.toLowerCase());
     if (index != -1) {
-      let newlan = createElement("div", languages[index].toUpperCase());
+      const r = int(random(100, 250));
+      const g = int(random(100, 250));
+      const b = int(random(100, 250));
+      const color =
+        "rgb(" + r.toString() + "," + g.toString() + "," + b.toString() + ")";
+      let newlan = createDiv(languages[index].toUpperCase());
       newlan.class("lan");
-      newlan.style("color", colors[int(random(0, 5))]);
+      newlan.style("color", color);
       newlan.parent(container);
       tranlans.push(lans[index]);
+      let arrow = createElement("i", "");
+      arrow.parent(container);
     }
     ele.value = "";
   }

@@ -63,19 +63,19 @@ body {
 
 .new {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 }
 
 #button {
   padding: 0.5rem;
-  margin-top: 1rem;
-  margin-left: 2rem;
-  color: white;
+  margin-top: 2rem;
+  margin-left: 5rem;
+  color: #3696c7;
   font-style: italic;
   font-weight: 400;
-  border-radius: 3px;
-  background-color: #ccc;
+  border-radius: 5px;
+  border: solid 2px #3696c7;
 }
 
 #language {
@@ -98,6 +98,23 @@ body {
 #content {
 }
 
+#lans {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+i {
+  border: solid #787878;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
 #container {
   width: 40%;
+  display: flex;
+  flex-direction: row;
 }
