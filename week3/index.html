@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>week3</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700i" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.sound.js"></script>
+</head>
+<body>
+	<div class="heading">
+		<span class="translation">Translation</span>
+		<span class="recreation">Re-creation</span>
+		<span class="of">of</span>
+		<span class="poetry">Poetry</span>
+	</div>
+	<div class="subheading">
+		This example is showchasing recreations of <span class="title">Do Not Go Gentle into that Good Night</span> by Dylan Thomas through translating it into other languages and back using Google Translate API.
+	</div>
+	<div class="wrap">
+		<div id = "content"></div>
+		<div id="container">
+			<div class="new">
+			<input id="language" placeholder="Add a language" onkeydown="search(this)"/>
+				<span id="button">Recreate</span>
+		</div>
+			<div class="lan">ENGLISH</div>
+		</div>
+  </div>
+  <script src="sketch.js"></script>
+</body>
+</html>
