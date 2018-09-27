@@ -67,15 +67,25 @@ body {
   align-items: center;
 }
 
-#button {
+.button {
   padding: 0.5rem;
   margin-top: 2rem;
   margin-left: 5rem;
-  color: #3696c7;
   font-style: italic;
   font-weight: 400;
   border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#recreate {
+  color: #3696c7;
   border: solid 2px #3696c7;
+}
+
+#clearButton {
+  color: #787878;
+  border: solid 2px #787878;
 }
 
 #language {
@@ -117,4 +127,12 @@ i {
   width: 40%;
   display: flex;
   flex-direction: row;
+}
+
+footer {
+  font-family: "Montserrat", sans-serif;
+  color: #787878;
+  font-weight: 300;
+  font-size: 0.8rem;
+  margin-top: 4rem;
 }

@@ -53,7 +53,10 @@ function setup() {
     "swedish",
     "portuguese",
     "russian",
-    "norwegian"
+    "norwegian",
+    "thai",
+    "turkish",
+    "hindi"
   ];
 
   lans = [
@@ -74,13 +77,20 @@ function setup() {
     "sw",
     "pt",
     "ru",
-    "no"
+    "no",
+    "th",
+    "tr",
+    "hi"
   ];
 
-  button = select("#button");
+  button = select("#recreate");
   button.mousePressed(transAll);
   content = select("#content");
   container = select("#lans");
+
+  const clearButton = select("#clearButton");
+  clearButton.mousePressed(clearAll);
+
   arr = poem.split("*");
   for (let i = 0; i < arr.length; i++) {
     const line = createP(arr[i]);
@@ -89,34 +99,45 @@ function setup() {
   }
 }
 
-function transAll() {
-  tranlans.push("en");
-  console.log(tranlans);
-  for (let i = 0; i < lines.length; i++) {
-    trans(arr[i], 0).then(function(result) {
-      lines[i].elt.innerHTML = result;
-    });
+function clearAll() {
+  tranlans = ["en"];
+  console.log(container);
+  while (container.elt.children[0]) {
+    container.elt.children[0].remove();
   }
 }
 
-function trans(line, i) {
+function transAll() {
+  if (tranlans.length > 1) {
+    let copy = tranlans.slice();
+    copy.push("en");
+    console.log(copy);
+    for (let i = 0; i < lines.length; i++) {
+      trans(arr[i], copy, 0).then(function(result) {
+        lines[i].elt.innerHTML = result;
+      });
+    }
+  }
+}
+
+function trans(line, list, i) {
   return fetch(
     "https://translation.googleapis.com/language/translate/v2/?q=" +
       line +
       "&source=" +
-      tranlans[i] +
+      list[i] +
       "&target=" +
-      tranlans[i + 1] +
+      list[i + 1] +
       "&key=" +
       apiKey[int(random(0, 1.9))]
   )
     .then(response => response.json())
     .then(data => {
       const result = data.data.translations[0].translatedText;
-      if (i == tranlans.length - 2) {
+      if (i == list.length - 2) {
         return result;
       } else {
-        return trans(result, i + 1);
+        return trans(result, list, i + 1);
       }
     })
     .catch(error => console.error(error));
