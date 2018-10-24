@@ -21,7 +21,6 @@ function generate() {
   for (let i = 0; i < lines.length; i++) {
     markov.feed(lines[i]);
   }
-  const results = select('#results');
-  results.value(markov.generate());
-  console.log(markov.generate());
+  const results = document.getElementById("results");
+  results.innerHTML = markov.generate();
 }
