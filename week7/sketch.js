@@ -16,7 +16,7 @@ function setup() {
 function generate() {
   let order = select('#order');
 
-  markov = new MarkovGenerator(3, Math.floor(15+Math.random()*10));
+  markov = new MarkovGenerator(4, Math.floor(18+Math.random()*10));
 
   for (let i = 0; i < lines.length; i++) {
     markov.feed(lines[i]);
