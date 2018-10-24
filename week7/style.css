@@ -1,0 +1,43 @@
+body {
+  padding: 6rem;
+}
+
+.heading {
+  font-family: "Montserrat";
+  font-size: 2rem;
+}
+
+.subheading {
+  margin-top: 3rem;
+  width: 65%;
+  color: #787878;
+  line-height: 1.5rem;
+  font-family: "Lato", sans-serif;
+}
+
+
+button {
+  font-family: "Lato", sans-serif;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  border-radius: 0;
+  font-size: 1em;
+  border: solid 1px black;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+}
+
+
+#results{
+    font-family: "Lato", sans-serif;
+}
+
+footer {
+  font-family: "Montserrat", sans-serif;
+  color: #787878;
+  font-weight: 300;
+  font-size: 0.8rem;
+  margin-top: 4rem;
+}
