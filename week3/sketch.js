@@ -105,6 +105,11 @@ function clearAll() {
   while (container.elt.children[0]) {
     container.elt.children[0].remove();
   }
+
+  arr = poem.split("*");
+  for (let i = 0; i < lines.length; i++) {
+    lines[i].elt.innerHTML = arr[i];
+  }
 }
 
 function transAll() {
